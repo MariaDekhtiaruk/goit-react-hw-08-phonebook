@@ -21,7 +21,6 @@ export const usersSlice = createSlice({
   extraReducers: builder => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder
-
       .addCase(registerThunk.pending, (state, action) => {
         state.isLoading = true;
       })

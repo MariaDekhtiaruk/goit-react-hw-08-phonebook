@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import css from './Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -7,7 +6,6 @@ import { useUser } from 'redux/useSelectors';
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const userState = useUser();
 
   const { error, token, name, isLoading } = userState;

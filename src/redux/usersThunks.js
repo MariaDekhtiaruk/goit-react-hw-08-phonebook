@@ -13,6 +13,7 @@ export const registerThunk = createAsyncThunk(
     }
   }
 );
+
 export const loginThunk = createAsyncThunk(
   'users/login',
   async ({ email, password }, { rejectWithValue }) => {
