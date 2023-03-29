@@ -1,4 +1,5 @@
 import css from './Registration.css';
+
 export const Registration = () => {
   return (
     <form className={css.form} autoComplete="off">

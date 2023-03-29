@@ -2,9 +2,9 @@ import ContactItem from './ContactItem';
 import PropTypes from 'prop-types';
 import { ContactPropType } from 'ContactPropType';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContactsThunk } from 'redux/contactsThunks';
-import { useContacts } from 'redux/useSelectors';
+import { useContacts, useUser } from 'redux/useSelectors';
 
 const isSubstringPresentInString = (string, substring) => {
   return string.toLowerCase().includes(substring.toLowerCase());
@@ -12,7 +12,7 @@ const isSubstringPresentInString = (string, substring) => {
 
 const ContactList = () => {
   const contactsState = useContacts();
-
+  const { isLoggedIn } = useUser();
   const contacts = contactsState.contacts;
   const errorMessage = contactsState.error;
   const isLoading = contactsState.isLoading;
@@ -20,8 +20,9 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContactsThunk());
-  }, [dispatch]);
+    // Make request only if user is logged in
+    if (isLoggedIn) dispatch(fetchContactsThunk());
+  }, [dispatch, isLoggedIn]);
 
   return contacts && !isLoading ? (
     <ul className="list">

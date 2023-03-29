@@ -1,5 +1,3 @@
-import { AUTH_TOKEN } from 'redux/usersSlice';
-
 const api = {
   async processResponse(response) {
     // Check if response is an error
@@ -51,6 +49,21 @@ const api = {
 
     return this.processResponse(response);
   },
+  async register(name, email, password) {
+    const response = await fetch(`${this.baseUriHeroku}/users/signup`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return this.processResponse(response);
+  },
   async login(email, password) {
     const response = await fetch(`${this.baseUriHeroku}/users/login`, {
       method: 'POST',
@@ -65,11 +78,18 @@ const api = {
 
     return this.processResponse(response);
   },
+  async logout() {
+    const response = await fetch(`${this.baseUriHeroku}/users/logout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.token,
+      },
+    });
+
+    return this.processResponse(response);
+  },
 };
-
-const cachedAuthToken = localStorage.getItem(AUTH_TOKEN);
-
-if (cachedAuthToken) api.setAuthToken(cachedAuthToken);
 
 window.api = api;
 
