@@ -9,6 +9,7 @@ import { useUser } from 'redux/useSelectors';
 import api from 'services/api';
 import { AuthNav } from './AuthNav/AuthNav';
 import RestrictedRoute from './RestrictedRoute';
+import PrivateRoute from './PrivateRoute';
 
 export function App() {
   const { token, isLoggedIn } = useUser();
@@ -25,9 +26,25 @@ export function App() {
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </header>
       <Routes>
-        <Route index path="/" element={<Login />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Registration />}></Route>
+        <Route
+          index
+          path="/"
+          element={
+            <PrivateRoute component={<Login />} redirectTo="/contacts" />
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <PrivateRoute component={<Login />} redirectTo="/contacts" />
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={
+            <PrivateRoute component={<Registration />} redirectTo="/contacts" />
+          }
+        ></Route>
         <Route
           path="/contacts"
           element={<RestrictedRoute component={<Contacts />} />}
