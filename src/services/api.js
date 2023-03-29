@@ -1,3 +1,5 @@
+import { AUTH_TOKEN } from 'redux/usersSlice';
+
 const api = {
   async processResponse(response) {
     // Check if response is an error
@@ -11,16 +13,28 @@ const api = {
   },
   baseUri: 'https://641a9ef1f398d7d95d5a8094.mockapi.io/contacts',
   baseUriHeroku: 'https://connections-api.herokuapp.com',
-  async fetchAll() {
-    const response = await fetch(this.baseUri);
+  token: '',
+  setAuthToken(token) {
+    this.token = `Bearer ${token}`;
+  },
+  async fetchContacts() {
+    const response = await fetch(`${this.baseUriHeroku}/contacts`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.token,
+      },
+    });
 
     return this.processResponse(response);
   },
-  async add(data) {
-    const response = await fetch(this.baseUri, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  async addContact(data) {
+    console.log('data', data);
+    const response = await fetch(`${this.baseUriHeroku}/contacts`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: this.token,
       },
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
@@ -52,6 +66,10 @@ const api = {
     return this.processResponse(response);
   },
 };
+
+const cachedAuthToken = localStorage.getItem(AUTH_TOKEN);
+
+if (cachedAuthToken) api.setAuthToken(cachedAuthToken);
 
 window.api = api;
 

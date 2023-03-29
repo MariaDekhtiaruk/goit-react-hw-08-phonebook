@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginThunk } from './usersThunks';
+import api from 'services/api';
 
 const initialState = {
   name: '',
@@ -31,6 +32,7 @@ export const usersSlice = createSlice({
         state.token = token;
         state.name = name;
         state.error = null;
+        api.setAuthToken(token);
         state.isLoading = false;
       })
       .addCase(loginThunk.rejected, (state, action) => {

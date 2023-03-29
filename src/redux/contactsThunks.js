@@ -5,7 +5,7 @@ export const fetchContactsThunk = createAsyncThunk(
   'contacts/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await api.fetchAll();
+      const response = await api.fetchContacts();
 
       return response;
     } catch (error) {
@@ -25,7 +25,7 @@ export const addContactThunk = createAsyncThunk(
       return rejectWithValue(`${contact.name} is already in contact`);
     }
 
-    const response = await api.add(contact);
+    const response = await api.addContact(contact);
     return response;
   }
 );

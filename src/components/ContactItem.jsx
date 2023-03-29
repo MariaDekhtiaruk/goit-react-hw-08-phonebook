@@ -3,12 +3,12 @@ import { ContactPropType } from 'ContactPropType';
 import { useDispatch } from 'react-redux';
 import { deleteContactThunk } from 'redux/contactsThunks';
 
-const ContactItem = ({ contact: { name, phone, id } }) => {
+const ContactItem = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch();
 
   return (
     <li className="list-item">
-      {name}: {phone}
+      {name}: {number}
       <button
         type="button"
         className="button-delete"
