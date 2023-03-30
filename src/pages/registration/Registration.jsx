@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { registerThunk } from 'redux/usersThunks';
 import { useUser } from 'redux/useSelectors';
 
-export const Registration = () => {
+const Registration = () => {
   const dispatch = useDispatch();
   const userState = useUser();
 
@@ -58,3 +58,5 @@ export const Registration = () => {
     </div>
   );
 };
+
+export default Registration;

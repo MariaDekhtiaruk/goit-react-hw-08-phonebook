@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/usersThunks';
 import { useUser } from 'redux/useSelectors';
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const userState = useUser();
 
@@ -57,3 +57,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
