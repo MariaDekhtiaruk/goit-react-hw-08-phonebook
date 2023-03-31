@@ -27,7 +27,7 @@ export function ContactForm() {
         event.preventDefault();
         // Validate name and number
 
-        dispatch(addContactThunk({ name: contactName, phone: number }));
+        dispatch(addContactThunk({ name: contactName, number }));
         setContactName('');
         setNumber('');
       }}

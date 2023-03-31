@@ -13,7 +13,6 @@ const ContactItem = ({ contact: { name, number, id } }) => {
       {name}: {number}
       <Button
         variant="outlined"
-        disabled
         size="small"
         type="button"
         className="button-delete"

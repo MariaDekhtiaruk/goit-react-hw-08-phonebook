@@ -1,9 +1,10 @@
-import css from './Registration.css';
+import './Registration.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from 'redux/usersThunks';
 import { useUser } from 'redux/useSelectors';
 
+import { Button } from '@mui/material';
 const Registration = () => {
   const dispatch = useDispatch();
   const userState = useUser();
@@ -30,7 +31,7 @@ const Registration = () => {
     <div>
       {error ? <h1>{error}</h1> : null}
       <form
-        className={css.form}
+        className="form"
         autoComplete="off"
         onSubmit={event => {
           event.preventDefault();
@@ -41,19 +42,21 @@ const Registration = () => {
           // setPassword('');
         }}
       >
-        <label className={css.label}>
+        <label className="label">
           Username
           <input type="text" name="name" onChange={onChangeName} />
         </label>
-        <label className={css.label}>
+        <label className="label">
           Email
           <input type="email" name="email" onChange={onChangeEmail} />
         </label>
-        <label className={css.label}>
+        <label className="label">
           Password
           <input type="password" name="password" onChange={onChangePassword} />
         </label>
-        <button type="submit">Register</button>
+        <Button variant="contained" type="button">
+          Register
+        </Button>
       </form>
     </div>
   );

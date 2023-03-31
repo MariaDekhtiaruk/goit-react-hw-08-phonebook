@@ -1,4 +1,4 @@
-import css from './Login.css';
+import './Login.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/usersThunks';
@@ -33,7 +33,7 @@ const Login = () => {
         </h1>
       ) : null}
       <form
-        className={css.form}
+        className="form"
         autoComplete="off"
         onSubmit={event => {
           event.preventDefault();
@@ -44,11 +44,11 @@ const Login = () => {
           // setPassword('');
         }}
       >
-        <label className={css.label}>
+        <label className="label">
           Email
           <input type="email" name="email" onChange={onChangeEmail} />
         </label>
-        <label className={css.label}>
+        <label className="label">
           Password
           <input type="password" name="password" onChange={onChangePassword} />
         </label>

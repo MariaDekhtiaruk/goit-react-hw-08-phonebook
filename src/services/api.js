@@ -9,7 +9,6 @@ const api = {
     // Response is not an error. Convert response to JSON and return its body
     return response.json();
   },
-  baseUri: 'https://641a9ef1f398d7d95d5a8094.mockapi.io/contacts',
   baseUriHeroku: 'https://connections-api.herokuapp.com',
   token: '',
   setAuthToken(token) {
@@ -40,10 +39,11 @@ const api = {
     return this.processResponse(response);
   },
   async delete(id) {
-    const response = await fetch(`${this.baseUri}/${id}`, {
+    const response = await fetch(`${this.baseUriHeroku}/contacts/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: this.token,
       },
     });
 
