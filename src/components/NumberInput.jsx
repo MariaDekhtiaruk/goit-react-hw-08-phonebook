@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
-const NumberInput = ({ title, value, onChange, pattern }) => {
+
+import { TextField } from '@mui/material';
+
+const NumberInput = ({ title, value, onChange, pattern, required = false }) => {
   return (
     <>
       <h2>{title}</h2>
-      <input
+      <TextField
+        id="outlined-basic"
+        label="Number"
+        variant="outlined"
         value={value}
         type="tel"
         name="number"
-        pattern={pattern}
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
+        required={required}
         onChange={onChange}
+        inputProps={{ pattern }}
       />
     </>
   );

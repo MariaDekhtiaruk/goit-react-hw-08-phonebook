@@ -11,6 +11,9 @@ import { AuthNav } from './AuthNav/AuthNav';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+
 const Registration = lazy(() => import('../pages/registration/Registration'));
 const Login = lazy(() => import('../pages/login/Login'));
 const Contacts = lazy(() => import('../pages/contacts/Contacts'));
@@ -25,40 +28,44 @@ export function App() {
   }, [token]);
 
   return isReady ? (
-    <div className="app">
-      <header className="header">
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      </header>
-      <Suspense fallback={<div>Loading page...</div>}>
-        <Routes>
-          <Route
-            index
-            path="/"
-            element={
-              <PrivateRoute component={<Login />} redirectTo="/contacts" />
-            }
-          ></Route>
-          <Route
-            path="/login"
-            element={
-              <PrivateRoute component={<Login />} redirectTo="/contacts" />
-            }
-          ></Route>
-          <Route
-            path="/register"
-            element={
-              <PrivateRoute
-                component={<Registration />}
-                redirectTo="/contacts"
-              />
-            }
-          ></Route>
-          <Route
-            path="/contacts"
-            element={<RestrictedRoute component={<Contacts />} />}
-          ></Route>
-        </Routes>
-      </Suspense>
-    </div>
+    <Container maxWidth="m">
+      <div className="app">
+        <Box sx={{ my: 4 }}>
+          <header className="header">
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
+          </header>
+        </Box>
+        <Suspense fallback={<div>Loading page...</div>}>
+          <Routes>
+            <Route
+              index
+              path="/"
+              element={
+                <PrivateRoute component={<Login />} redirectTo="/contacts" />
+              }
+            ></Route>
+            <Route
+              path="/login"
+              element={
+                <PrivateRoute component={<Login />} redirectTo="/contacts" />
+              }
+            ></Route>
+            <Route
+              path="/register"
+              element={
+                <PrivateRoute
+                  component={<Registration />}
+                  redirectTo="/contacts"
+                />
+              }
+            ></Route>
+            <Route
+              path="/contacts"
+              element={<RestrictedRoute component={<Contacts />} />}
+            ></Route>
+          </Routes>
+        </Suspense>
+      </div>
+    </Container>
   ) : null;
 }

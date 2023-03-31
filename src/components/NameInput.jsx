@@ -1,16 +1,23 @@
 import PropTypes from 'prop-types';
-const NameInput = ({ title, onChange, value, pattern }) => {
+
+import { TextField } from '@mui/material';
+
+const NameInput = ({ title, onChange, value, pattern, required = false }) => {
+  console.log(value);
   return (
     <>
       <h2>{title}</h2>
-      <input
+      <TextField
+        id="outlined-basic"
+        label="Name"
+        variant="outlined"
         value={value}
         type="text"
         name="name"
-        pattern={pattern}
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
+        required={required}
         onChange={onChange}
+        inputProps={{ pattern }}
       />
     </>
   );

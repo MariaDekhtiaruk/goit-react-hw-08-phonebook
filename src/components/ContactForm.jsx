@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addContactThunk } from 'redux/contactsThunks';
 
+import { Button } from '@mui/material';
+
 export function ContactForm() {
   const dispatch = useDispatch();
 
@@ -35,16 +37,18 @@ export function ContactForm() {
         value={contactName}
         onChange={onChangeName}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        required={true}
       ></NameInput>
       <NumberInput
         title="Number"
         value={number}
         onChange={onChangePhone}
         pattern="[0-9]{3}-?[0-9]{2}-?[0-9]{2}"
+        required={true}
       />
-      <button type="submit" className="button-add">
+      <Button variant="contained" type="submit" className="button-add">
         Add Contact
-      </button>
+      </Button>
     </form>
   );
 }

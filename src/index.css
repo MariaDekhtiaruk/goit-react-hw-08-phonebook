@@ -17,3 +17,7 @@ code {
 input:invalid {
   border: red solid 3px;
 }
+
+input[value=''] {
+  border: none;
+}

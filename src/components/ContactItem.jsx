@@ -3,19 +3,24 @@ import { ContactPropType } from 'ContactPropType';
 import { useDispatch } from 'react-redux';
 import { deleteContactThunk } from 'redux/contactsThunks';
 
+import { Button } from '@mui/material';
+
 const ContactItem = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch();
 
   return (
     <li className="list-item">
       {name}: {number}
-      <button
+      <Button
+        variant="outlined"
+        disabled
+        size="small"
         type="button"
         className="button-delete"
         onClick={() => dispatch(deleteContactThunk(id))}
       >
         Delete
-      </button>
+      </Button>
     </li>
   );
 };
