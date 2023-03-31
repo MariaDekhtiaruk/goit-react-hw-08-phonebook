@@ -43,18 +43,18 @@ const Registration = () => {
         }}
       >
         <label className="label">
-          Username
+          <h3 className="label-name">Username</h3>
           <input type="text" name="name" onChange={onChangeName} />
         </label>
         <label className="label">
-          Email
+          <h3 className="label-name">Email</h3>
           <input type="email" name="email" onChange={onChangeEmail} />
         </label>
         <label className="label">
-          Password
+          <h3 className="label-name">Password</h3>
           <input type="password" name="password" onChange={onChangePassword} />
         </label>
-        <Button variant="contained" type="button">
+        <Button variant="contained" type="submit">
           Register
         </Button>
       </form>

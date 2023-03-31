@@ -15,7 +15,7 @@ const ContactItem = ({ contact: { name, number, id } }) => {
         variant="outlined"
         size="small"
         type="button"
-        className="button-delete"
+        sx={{ ml: 2 }}
         onClick={() => dispatch(deleteContactThunk(id))}
       >
         Delete

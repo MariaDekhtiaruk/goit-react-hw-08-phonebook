@@ -5,7 +5,7 @@ import { TextField } from '@mui/material';
 const NumberInput = ({ title, value, onChange, pattern, required = false }) => {
   return (
     <>
-      <h2>{title}</h2>
+      {/* <h2>{title}</h2> */}
       <TextField
         id="outlined-basic"
         label="Number"

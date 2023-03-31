@@ -13,6 +13,8 @@ import PrivateRoute from './PrivateRoute';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
+import { cleanup } from 'redux/usersSlice';
 
 const Registration = lazy(() => import('../pages/registration/Registration'));
 const Login = lazy(() => import('../pages/login/Login'));
@@ -21,11 +23,13 @@ const Contacts = lazy(() => import('../pages/contacts/Contacts'));
 export function App() {
   const { token, isLoggedIn } = useUser();
   const [isReady, setIsReady] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(cleanup());
     api.setAuthToken(token);
     setIsReady(true);
-  }, [token]);
+  }, [token, dispatch]);
 
   return isReady ? (
     <Container maxWidth="m">

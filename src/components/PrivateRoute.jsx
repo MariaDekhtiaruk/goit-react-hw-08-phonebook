@@ -2,9 +2,9 @@ import { Navigate } from 'react-router-dom';
 import { useUser } from 'redux/useSelectors';
 
 const PrivateRoute = ({ component, redirectTo = '/' }) => {
-  const { isLoggedIn, isLoading } = useUser();
+  const { isLoggedIn } = useUser();
 
-  return isLoggedIn || isLoading ? <Navigate to={redirectTo} /> : component;
+  return isLoggedIn ? <Navigate to={redirectTo} /> : component;
 };
 
 export default PrivateRoute;

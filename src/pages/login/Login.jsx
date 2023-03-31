@@ -1,8 +1,10 @@
 import './Login.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/usersThunks';
 import { useUser } from 'redux/useSelectors';
+import { Button } from '@mui/material';
+import { cleanup } from 'redux/usersSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,10 @@ const Login = () => {
   const onChangePassword = evt => {
     setPassword(evt.target.value);
   };
+
+  useEffect(() => {
+    return () => dispatch(cleanup());
+  }, [dispatch]);
 
   console.log(userState);
 
@@ -45,14 +51,16 @@ const Login = () => {
         }}
       >
         <label className="label">
-          Email
+          <h3 className="label-name">Email</h3>
           <input type="email" name="email" onChange={onChangeEmail} />
         </label>
         <label className="label">
-          Password
+          <h3 className="label-name">Password</h3>
           <input type="password" name="password" onChange={onChangePassword} />
         </label>
-        <button type="submit">Log In</button>
+        <Button variant="contained" type="submit">
+          Log In
+        </Button>
       </form>
     </div>
   );

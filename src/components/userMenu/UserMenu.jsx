@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { logOutThunk } from 'redux/usersThunks';
 import { useUser } from 'redux/useSelectors';
-import css from './UserMenu.css';
+import './UserMenu.css';
 import { NavLink } from 'react-router-dom';
 
 import { Button } from '@mui/material';
@@ -11,18 +11,20 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className={css.wrapper}>
-      <p className={css.username}>Welcome, {name}</p>
+    <div className="wrapper">
+      <p className="username">Welcome, {name}</p>
+
+      <NavLink className="link" to={'/contacts'}>
+        Contacts
+      </NavLink>
       <Button
         variant="contained"
+        size="small"
         type="button"
         onClick={() => dispatch(logOutThunk())}
       >
         Logout
       </Button>
-      <NavLink className="link" to={'/contacts'}>
-        Contacts
-      </NavLink>
     </div>
   );
 };

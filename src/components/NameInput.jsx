@@ -6,7 +6,7 @@ const NameInput = ({ title, onChange, value, pattern, required = false }) => {
   console.log(value);
   return (
     <>
-      <h2>{title}</h2>
+      <h2 className="title">{title}</h2>
       <TextField
         id="outlined-basic"
         label="Name"

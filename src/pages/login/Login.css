@@ -7,3 +7,10 @@
   flex-direction: column;
   margin-bottom: 16px;
 }
+.label-name {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  color: gray;
+}

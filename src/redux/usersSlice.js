@@ -13,7 +13,11 @@ const initialState = {
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanup(state) {
+      state.error = null;
+    },
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(args => {
       console.log('middleware', args);
@@ -80,5 +84,7 @@ export const usersSlice = createSlice({
       });
   },
 });
+
+export const { cleanup } = usersSlice.actions;
 
 export default usersSlice.reducer;
